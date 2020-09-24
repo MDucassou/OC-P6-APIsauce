@@ -8,7 +8,11 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
 
-mongoose.connect('mongodb+srv://Tif2DB:W6HkaUB9HIT9hPIX@cluster0.oges5.mongodb.net/sauceBDD?retryWrites=true&w=majority',
+require('dotenv').config();
+
+const DB = process.env.DB_api;
+
+mongoose.connect( DB ,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
