@@ -6,7 +6,7 @@ const User = require('../models/User');
 
 
 exports.signup = (req, res, next) => {
-  var buf_mail = Buffer.from(req.body.email);
+  var buf_mail = Buffer.from(req.body.email).toString('base64');
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
@@ -21,7 +21,7 @@ exports.signup = (req, res, next) => {
   };
 
 exports.login = (req, res, next) => {
-  var buf_mail = Buffer.from(req.body.email);
+  var buf_mail = Buffer.from(req.body.email).toString('base64');
   User.findOne({ email: buf_mail })
     .then(user => {
       if (!user) {
